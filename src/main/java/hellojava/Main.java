@@ -28,13 +28,17 @@ public class Main {
 //            member.setId(100L);
             member.setName("hello");
             member.setMemberType(MemberType.USER);
-            member.setTeamId(team.getId());
+//            member.setTeamId(team.getId());
+            member.setTeam(team);// 단방향 연관관계 설정, 참조 저장
             em.persist(member);
 
+            em.flush();
+            em.clear();
             // 조회 - 각각 조회해야 된다.
-            Member findMember = em.find(Member.class,member.getTeamId());
-            Team findTeam = em.find(Team.class,team.getName());
-            System.out.println("member = " + member.toString());
+            Member findMember = em.find(Member.class,member.getId());
+            Team findTeam = findMember.getTeam();
+            findTeam.getName();
+//            System.out.println("member = " + member.toString());
 
 
             tx.commit();

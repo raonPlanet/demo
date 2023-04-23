@@ -12,8 +12,21 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private MemberType memberType;
 
-    @Column(name="TEAM_ID")
-    private Long teamId;
+//    @Column(name="TEAM_ID")
+//    private Long teamId;
+
+    // 단방향매핑 member(다) -> team(일)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="TEAM_ID")
+    private Team team;
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 
     public Long getId() {
         return id;
@@ -47,11 +60,11 @@ public class Member {
         this.memberType = memberType;
     }
 
-    public Long getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(Long teamId) {
-        this.teamId = teamId;
-    }
+//    public Long getTeamId() {
+//        return teamId;
+//    }
+//
+//    public void setTeamId(Long teamId) {
+//        this.teamId = teamId;
+//    }
 }
