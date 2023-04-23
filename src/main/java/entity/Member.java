@@ -12,6 +12,9 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private MemberType memberType;
 
+    @Column(name="TEAM_ID")
+    private Long teamId;
+
     public Long getId() {
         return id;
     }
@@ -42,5 +45,13 @@ public class Member {
 
     public void setMemberType(MemberType memberType) {
         this.memberType = memberType;
+    }
+
+    public Long getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
     }
 }
