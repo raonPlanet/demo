@@ -35,10 +35,14 @@ public class Main {
 //            team.getMembers().add(member);
             member.setTeam(team);
 
-            em.flush();
-            em.clear();
-            // 조회 - 각각 조회해야 된다.
+//            em.flush(); // db에 반영
+//            em.clear(); // 영속성 컨텍스트에서 지운다.
+//            // 조회 - 각각 조회해야 된다.
 //            Member findMember = em.find(Member.class,member.getId());
+//            em.close();
+//            Team findTeam = findMember.getTeam();
+//            findTeam.getName();
+//            System.out.println("findTeam = "+ findTeam);
 //            Team findTeam = findMember.getTeam();
 //            findTeam.getName();
 //            List<Member> members = findTeam.getMembers();
@@ -47,6 +51,12 @@ public class Main {
 //            }
 //            System.out.println("member = " + member.toString());
 
+
+            String jpql = "select m from Member m join fetch m.team where m.name like '%hello%'";
+            List<Member> result = em.createQuery(jpql, Member.class)
+                    .setFirstResult(10)
+                    .setMaxResults(20)
+                    .getResultList();
 
             tx.commit();
         } catch (Exception e) {
