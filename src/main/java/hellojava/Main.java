@@ -9,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.awt.*;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -29,15 +30,21 @@ public class Main {
             member.setName("hello");
             member.setMemberType(MemberType.USER);
 //            member.setTeamId(team.getId());
-            member.setTeam(team);// 단방향 연관관계 설정, 참조 저장
+//            member.setTeam(team);// 단방향 연관관계 설정, 참조 저장
             em.persist(member);
+//            team.getMembers().add(member);
+            member.setTeam(team);
 
             em.flush();
             em.clear();
             // 조회 - 각각 조회해야 된다.
-            Member findMember = em.find(Member.class,member.getId());
-            Team findTeam = findMember.getTeam();
-            findTeam.getName();
+//            Member findMember = em.find(Member.class,member.getId());
+//            Team findTeam = findMember.getTeam();
+//            findTeam.getName();
+//            List<Member> members = findTeam.getMembers();
+//            for (Member member1 : members) {
+//                System.out.println("member1 = " + member1);
+//            }
 //            System.out.println("member = " + member.toString());
 
 

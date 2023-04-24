@@ -60,7 +60,17 @@ public class Member {
         this.memberType = memberType;
     }
 
-//    public Long getTeamId() {
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", memberType=" + memberType +
+                ", team=" + team +
+                '}';
+    }
+    //    public Long getTeamId() {
 //        return teamId;
 //    }
 //
